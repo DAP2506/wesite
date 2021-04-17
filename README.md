@@ -1,2 +1,0 @@
-# wesite
-contest website
