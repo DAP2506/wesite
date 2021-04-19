@@ -339,16 +339,12 @@
             <label for="rate-2" style="font-size: 50px;">☆</label>
             <input type="radio" name="rate" id="rate-1">
             <label for="rate-1" style="font-size: 50px;">☆</label>
-            <form
-                action="contact.php"
-                method="POST">
-                <header></header>
-                <div class="textarea">
-                    <textarea name="text" cols="30" placeholder="please enter feedback about this website"></textarea>
-                </div>
-                <div class="bbttn">
-                    <button type="submit">Submit</button>
-                </div>
+           <form method="GET" name="submit-to-google-sheet" autocapitalize="off" action="javascript:;" id="reserform" onsubmit="insert_value()">
+                <!-- <header></header> -->
+                <textarea name="feed-back" cols="30" row="20" placeholder="please enter feedback about this website" id="feed-back" required></textarea>
+                <section class="bbttn" id="submit" name="subm">
+                    <button type="submit" value="register now" onclick="SubForm()">Submit</button>
+                </section>
             </form>
         </div>
     </div>
@@ -423,6 +419,28 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script>
+function SubForm (){
+    $.ajax({
+        url:'https://script.google.com/macros/s/AKfycby0U-8AuYTgdffp6Y759_wNssS2RKRg0xzgCuy1SfwnldXceawMiSfDclhF6jbsWEkU/exec',
+        // headers: {"accessKey": "YOUR_ACCESS_KEY", "secretKey": "YOUR_ACCESS_KEY"}
+        type:'post',
+        data:$("#reserform").serializeArray(),
+        success: function(){
+          alert("Form Data Submitted :)")
+        },
+        error: function(){
+          alert("There was an error :(")
+        }
+    });
+}
+</script>
 </body>
 
 </html>
